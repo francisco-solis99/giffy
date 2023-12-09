@@ -4,9 +4,9 @@ export default function Search({params}) {
   return (
     <>
       <main>
-        <div className='gifs__container'>
+        <section className='gifs__container'>
           <ListGifs keyword={params.keyword}/>
-        </div>
+        </section>
       </main>
     </>
   )

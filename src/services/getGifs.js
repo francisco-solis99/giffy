@@ -9,7 +9,7 @@ export default function getGifs(keyword){
   .then(({data}) => {
     const dataGifs = data.map(item => {
       const {id, title, images} = item;
-      const {url} = images.fixed_width;
+      const {url} = images.fixed_height;
       return {
         id, title, url
       }

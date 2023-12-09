@@ -1,7 +1,7 @@
 import { Link } from 'wouter';
 import './home.css'
 
-const POPULAR_GIFS = ['Selena Gomez', 'Cruz Azul', 'Spiderman']
+const POPULAR_GIFS = ['Selena Gomez', 'Batman', 'Spiderman']
 
 export default function Home(){
   return (

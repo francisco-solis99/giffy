@@ -1,5 +1,7 @@
 export default function Spin(){
   return (
-    <span className="loader"></span>
+    <div className="loader__wrapper">
+      <span className="loader"></span>
+    </div>
   )
 }
