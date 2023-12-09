@@ -5,6 +5,16 @@ import '../App.css'
 
 import {Link, Route} from 'wouter'
 
+/*
+  TODO:
+  - Organize the pages
+  - Organize the styles ✅
+  - Add the popular cards list
+  - Add the search results page
+  - Add the details page
+  - Fix styles ✅
+*/
+
 function App(){
   return (
     <>
