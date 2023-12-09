@@ -1,16 +1,16 @@
 import giffyLogo from '/logo.svg'
-import Home from '../pages/Home'
-import { ListGifs } from './ListGifs'
+import Home from '../pages/Home/Home'
+import Search from '../pages/Search/Search'
 import '../App.css'
 
 import {Link, Route} from 'wouter'
 
 /*
   TODO:
-  - Organize the pages
+  - Organize the pages ✅
   - Organize the styles ✅
-  - Add the popular cards list
-  - Add the search results page
+  - Add the popular cards list ✅
+  - Add the search results page ✅
   - Add the details page
   - Fix styles ✅
 */
@@ -34,11 +34,9 @@ function App(){
         component={Home}
         path="/"/>
 
-      <main>
-        <div className='gifs__container'>
-          <ListGifs keyword='Selena Gomez'/>
-        </div>
-      </main>
+      <Route
+        component={Search}
+        path="/search/:keyword"/>
     </>
   )
 }
