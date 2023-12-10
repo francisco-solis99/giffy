@@ -1,6 +1,6 @@
 const API_KEY = import.meta.env.VITE_API_KEY_GIPHY
 
-export default function getGifs(keyword){
+export default function getGifs({keyword}){
 
   const urlAPI = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=10&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
 

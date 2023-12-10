@@ -11,7 +11,7 @@ const POPULAR_GIFS = ['Selena Gomez', 'Batman', 'Spiderman']
 export default function Home(){
   const [search, setSearch] = useState('')
   const [, setLocation] = useLocation()
-  const {loading, gifs} = useGifs({keyword: 'cowboys'})
+  const {loading, gifs} = useGifs()
 
   const handleSubmit = (e) => {
     e.preventDefault();

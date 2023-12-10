@@ -5,11 +5,19 @@ export function useGifs({keyword} = {}){
   const [loading, setLoading] = useState(false)
   const [gifs, setGifs] = useState([]);
 
+  // Use local storage to get the last search
+
+
   useEffect(() => {
     setLoading(true)
-    getGifs(keyword)
+    // get the key or the lastkeyword or random
+    const keywordToUse = keyword || localStorage.getItem('lastKeyword') || 'random';
+
+    getGifs({keyword: keywordToUse})
       .then(gifs => {
         setGifs(gifs)
+        // Sve the last keyword
+        localStorage.setItem('lastKeyword', keyword)
         setTimeout(() => {
           setLoading(false)
         }, 800)
