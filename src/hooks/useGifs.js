@@ -7,20 +7,19 @@ export function useGifs({keyword} = {}){
 
   // Use local storage to get the last search
 
-
   useEffect(() => {
     setLoading(true)
     // get the key or the lastkeyword or random
-    const keywordToUse = keyword || localStorage.getItem('lastKeyword') || 'random';
+    const keywordToUse = keyword || window.localStorage.getItem('lastKeyword');
 
-    getGifs({keyword: keywordToUse})
+    getGifs({keyword: keywordToUse === 'undefined' ? 'random' : keywordToUse})
       .then(gifs => {
         setGifs(gifs)
-        // Sve the last keyword
-        localStorage.setItem('lastKeyword', keyword)
         setTimeout(() => {
           setLoading(false)
         }, 800)
+        // Save the last keyword
+        window.localStorage.setItem('lastKeyword', keyword)
       })
   }, [keyword])
 
