@@ -1,21 +1,35 @@
-import { Link } from 'wouter';
+import { useState } from 'react';
+import { Link, useLocation } from 'wouter';
 import { SearchIcon } from '../../components/icons/Search';
 import './home.css'
 
 const POPULAR_GIFS = ['Selena Gomez', 'Batman', 'Spiderman']
 
 export default function Home(){
+  const [search, setSearch] = useState('')
+  const [, setLocation] = useLocation()
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Go to the search results page
+    setLocation(`/search/${search}`)
+  }
+
+  const handleChange = (e) => {
+    setSearch(e.target.value)
+  }
+
   return (
     <div className='home__container'>
       {/* Searcher */}
       <div className='searcher__wrapper'>
-          <form action="" className='searcher__form'>
+          <form onSubmit={handleSubmit} className='searcher__form'>
             <div className='searcher'>
               <span>
                 <SearchIcon/>
               </span>
-              <input type="text" />
-              <button>Search</button>
+              <input onChange={handleChange} type="text" value={search}/>
+              <button type='submit'>Search</button>
             </div>
           </form>
       </div>
