@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { SearchIcon } from '../../components/icons/Search';
+import { ListGifs } from '../../components/ListGifs';
+import { useGifs } from '../../hooks/useGifs';
+
 import './home.css'
 
 const POPULAR_GIFS = ['Selena Gomez', 'Batman', 'Spiderman']
@@ -8,6 +11,7 @@ const POPULAR_GIFS = ['Selena Gomez', 'Batman', 'Spiderman']
 export default function Home(){
   const [search, setSearch] = useState('')
   const [, setLocation] = useLocation()
+  const {loading, gifs} = useGifs({keyword: 'cowboys'})
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +41,9 @@ export default function Home(){
       {/* Gifs */}
       <main className='last-gifs'>
         <h2>Your last search</h2>
+        <section className="gifs__container">
+          <ListGifs gifs={gifs} loading={loading}></ListGifs>
+        </section>
       </main>
 
       {/* Trending categories */}

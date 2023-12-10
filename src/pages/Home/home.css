@@ -61,7 +61,6 @@
 .last-gifs {
   grid-area: last;
   width: 100%;
-  background-color: red;
 }
 
 /* Pupular gifs */
