@@ -1,15 +1,15 @@
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import getGifs from '../services/getGifs';
+import {useGifContext} from '../context/GifContext';
+
+
 
 export function useGifs({keyword} = {}){
-  const [loading, setLoading] = useState(false)
-  const [gifs, setGifs] = useState([]);
-
-  // Use local storage to get the last search
+  const {loading, setLoading, gifs, setGifs} = useGifContext()
 
   useEffect(() => {
     setLoading(true)
-    // get the key or the lastkeyword or random
+    // Use local storage to get the last search to get the key or the lastkeyword or random
     const keywordToUse = keyword || window.localStorage.getItem('lastKeyword');
 
     getGifs({keyword: keywordToUse === 'undefined' ? 'random' : keywordToUse})
@@ -21,7 +21,7 @@ export function useGifs({keyword} = {}){
         // Save the last keyword
         window.localStorage.setItem('lastKeyword', keyword)
       })
-  }, [keyword])
+  }, [keyword, setGifs, setLoading])
 
   return {loading, gifs}
 }
