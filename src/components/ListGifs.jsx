@@ -8,9 +8,13 @@ export function ListGifs({gifs, loading}){
         loading
           ? <Spin/>
           : gifs.map(({title, id, url}) => {
-          return <Gif key={id}
-          title={title}
-          url={url}/>
+          return (
+            <Gif key={id}
+                 title={title}
+                 url={url}
+                 id={id}
+            />
+          )
         })
       }
     </>
