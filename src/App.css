@@ -47,8 +47,8 @@ main {
 }
 
 .gif {
-
   & figure {
+    cursor: pointer;
     display: grid;
     grid-template-areas: 'stack';
     overflow: hidden;
