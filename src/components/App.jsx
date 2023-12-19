@@ -1,6 +1,8 @@
 import giffyLogo from '/logo.svg'
 import Home from '../pages/Home/Home'
 import Search from '../pages/Search/Search'
+import Detail from '../pages/Detail/Detail'
+import { GifProvider } from '../context/GifContext'
 import '../App.css'
 
 import {Link, Route} from 'wouter'
@@ -26,14 +28,19 @@ function App(){
       </header>
 
       {/* List of gifs */}
+      <GifProvider>
+        <Route
+          component={Home}
+          path="/"/>
 
-      <Route
-        component={Home}
-        path="/"/>
+        <Route
+          component={Search}
+          path="/search/:keyword"/>
 
-      <Route
-        component={Search}
-        path="/search/:keyword"/>
+        <Route
+          component={Detail}
+          path="/gif/:id"/>
+      </GifProvider>
     </>
   )
 }
