@@ -48,7 +48,7 @@ export default function Home() {
       {/* Trending categories */}
       <aside className='popular__gifs'>
         <h3 className='popular__title'>
-          The most popular Gifs 🖼️
+          Popular Gifs
         </h3>
         <ul className='popular__list'>
           {

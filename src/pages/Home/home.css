@@ -1,10 +1,12 @@
 .home__container {
+  width: 90%;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr .25fr;
   grid-template-areas: 'searcher searcher'
                        'last popular';
-  width: 90%;
-  margin: 0 auto;
+  gap: 2em;
+
 }
 
 /* Searhcer */
@@ -61,20 +63,23 @@
 .last-gifs {
   grid-area: last;
   width: 100%;
+  margin-block: 0;
+
+  & h2 {
+    margin-block-end: 1em;
+  }
 }
 
 /* Pupular gifs */
 .popular__gifs {
   grid-area: popular;
-}
 
-.popular__title {
-  text-align: center;
-  margin-top: 1em;
+  & .popular__title {
+    margin-block-end: 1em;
+  }
 }
 
 .popular__list {
-  margin-block-start: 1em;
   list-style: none;
   display: grid;
   gap: 1.25em;
