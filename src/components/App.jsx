@@ -9,9 +9,13 @@ import {Link, Route} from 'wouter'
 
 /*
   TODO:
-  - Custom hook for list of gifs
+  - Context ✅
   - Search component
-  - Styles to the last serach
+  - Styles to the last search ✅
+  - Tendencies Component
+  - Alias
+  - Lazy loading tendencies
+  - Detail page styles
 */
 
 function App(){

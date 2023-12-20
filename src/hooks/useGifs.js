@@ -12,7 +12,7 @@ export function useGifs({keyword} = {}){
     // Use local storage to get the last search to get the key or the lastkeyword or random
     const keywordToUse = keyword || window.localStorage.getItem('lastKeyword');
 
-    getGifs({keyword: keywordToUse === 'undefined' ? 'random' : keywordToUse})
+    getGifs({keyword: keywordToUse === '' ? 'random' : keywordToUse})
       .then(gifs => {
         setGifs(gifs)
         setTimeout(() => {

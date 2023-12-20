@@ -39,9 +39,9 @@ export default function Home() {
 
       {/* Gifs */}
       <main className='last-gifs'>
-        <h2>Your last search</h2>
+        <h2>Your last search:</h2>
         <section className="gifs__container">
-          <ListGifs></ListGifs>
+          <ListGifs keyword={search}></ListGifs>
         </section>
       </main>
 
