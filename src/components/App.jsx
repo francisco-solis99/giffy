@@ -1,8 +1,8 @@
 import giffyLogo from '/logo.svg'
-import Home from '../pages/Home/Home'
-import Search from '../pages/Search/Search'
-import Detail from '../pages/Detail/Detail'
-import { GifProvider } from '../context/GifContext'
+import Home from '@pages/Home/Home'
+import Search from '@pages/Search/Search'
+import Detail from '@pages/Detail/Detail'
+import { GifProvider } from '@context/GifContext'
 import '../App.css'
 
 import {Link, Route} from 'wouter'

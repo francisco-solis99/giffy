@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { SearchIcon } from '../../components/icons/Search';
-import { ListGifs } from '../../components/ListGifs';
+import { SearchIcon } from '@components/icons/Search';
+import { ListGifs } from '@components/ListGifs';
 
 import './home.css'
 

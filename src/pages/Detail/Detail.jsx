@@ -1,6 +1,6 @@
-import Gif from "../../components/Gif"
+import Gif from "@components/Gif"
 // import { useGifContext } from "../../context/GifContext"
-import { useGifs } from "../../hooks/useGifs"
+import { useGifs } from "@hooks/useGifs"
 
 export default function Detail({ params }) {
   const { gifs } = useGifs()

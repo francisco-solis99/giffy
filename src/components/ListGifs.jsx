@@ -1,4 +1,4 @@
-import { useGifs } from "../hooks/useGifs";
+import { useGifs } from "@hooks/useGifs";
 import Gif from "./Gif";
 import Spin from "./Spin";
 
