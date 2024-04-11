@@ -1,19 +1,19 @@
 .home__container {
   width: 90%;
-  margin: 0 auto;
+  margin: 3em auto;
   display: grid;
   grid-template-columns: 1fr .25fr;
   grid-template-areas: 'searcher searcher'
-                       'last popular';
+                         'last last'
+                         'popular popular';
   gap: 2em;
-
 }
 
 /* Searhcer */
 .searcher__wrapper {
   grid-area: searcher;
   --backColor-searcher: #374151;
-  --buttonColor: #1C64F2;
+  --buttonColor: #3c4095aa;
   --text-searcher: #1F2937;
 
   & .searcher__form {
@@ -28,6 +28,7 @@
 
   & .searcher {
     width: 100%;
+    overflow: hidden;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
@@ -55,6 +56,7 @@
       border: 0;
       background-color: var(--buttonColor);
       color: white;
+      cursor: pointer;
     }
   }
 }
@@ -63,9 +65,11 @@
 .last-gifs {
   grid-area: last;
   width: 100%;
-  margin-block: 0;
+  margin-block: 2em;
+  min-height: 100vh;
 
   & h2 {
+    font-size: 1.75rem;
     margin-block-end: 1em;
   }
 }
@@ -79,20 +83,9 @@
   }
 }
 
-.popular__list {
-  list-style: none;
-  display: grid;
-  gap: 1.25em;
-  grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
-
-  & li {
-    padding: .75em;
-    border: 3px double white;
-  }
-
-  & a {
-    color: white;
-    text-decoration: none;
+@media screen and (min-width: 768px) {
+  .home__container {
+    grid-template-areas: 'searcher searcher'
+                       'last popular';
   }
 }
-
