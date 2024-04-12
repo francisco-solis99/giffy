@@ -1,0 +1,6 @@
+.detail-gif__wrapper {
+  display: grid;
+  width: 90%;
+  margin: 2em auto;
+  place-content: center;
+}
