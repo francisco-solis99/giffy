@@ -1,10 +1,7 @@
-import { useGifs } from "@hooks/useGifs";
 import Gif from "./Gif";
 import Spin from "./Spin";
 
-export function ListGifs({keyword = ''} = {}){
-  const { loading, gifs } = useGifs({keyword})
-
+export function ListGifs({gifs = [], loading = false} = {}){
   return (
     <>
       {
