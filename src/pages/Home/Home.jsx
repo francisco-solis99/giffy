@@ -1,26 +1,29 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'wouter';
+import { useRef } from 'react';
+import { useLocation } from 'wouter';
+import { useGifs } from '@hooks/useGifs';
 import { SearchIcon } from '@components/icons/Search';
 import { ListGifs } from '@components/ListGifs';
+import { LazyTrendingGifs } from '@components/LazyTrendingGifs';
 
 import './home.css'
 
-const POPULAR_GIFS = ['Selena Gomez', 'Batman', 'Spiderman']
+// const POPULAR_GIFS = ['Selena Gomez', 'Batman', 'Spiderman', 'Super Bowl']
 
 export default function Home() {
-  const [search, setSearch] = useState('')
+  const searchRef = useRef('')
   const [, setLocation] = useLocation()
+  const { loading, gifs } = useGifs({search: searchRef.current.value})
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Go to the search results page
-    setLocation(`/search/${search}`)
+    setLocation(`/search/${searchRef.current.value}`)
   }
 
-  const handleChange = (e) => {
-    setSearch(e.target.value)
-  }
+  // const handleChange = (e) => {
+  //   setSearch(e.target.value)
+  // }
 
   return (
     <div className='home__container'>
@@ -31,7 +34,7 @@ export default function Home() {
             <span>
               <SearchIcon />
             </span>
-            <input onChange={handleChange} type="text" value={search} />
+            <input ref={searchRef} type="text"  required />
             <button type='submit'>Search</button>
           </div>
         </form>
@@ -41,26 +44,14 @@ export default function Home() {
       <main className='last-gifs'>
         <h2>Your last search:</h2>
         <section className="gifs__container">
-          <ListGifs keyword={search}></ListGifs>
+          <ListGifs gifs={gifs} loading={loading}></ListGifs>
         </section>
       </main>
 
-      {/* Trending categories */}
+      {/* Categories */}
       <aside className='popular__gifs'>
-        <h3 className='popular__title'>
-          Popular Gifs
-        </h3>
-        <ul className='popular__list'>
-          {
-            POPULAR_GIFS.map(gif => (
-              <li key={gif}>
-                <Link to={`search/${gif}`}>
-                  {gif} gifs
-                </Link>
-              </li>
-            ))
-          }
-        </ul>
+        {/* <Category name="Popular Gifs" items={POPULAR_GIFS}/> */}
+        <LazyTrendingGifs/>
       </aside>
     </div>
   )
