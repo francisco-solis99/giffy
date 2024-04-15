@@ -1,25 +1,32 @@
 import {useState, useEffect, useRef} from 'react'
 
-export function useLazyScreen() {
+export function useLazyScreen({distance = '100px', externalRef, once = true} = {}) {
   const [show, setShow] = useState(false)
   const refLazyEl = useRef()
 
-  const handleObserver = (entries, observer) => {
-    const entryEl = entries[0]
-    if(entryEl.isIntersecting) {
-      setShow(true)
-      observer.disconnect()
-    }
-  }
+
 
   useEffect(() => {
-    const observer = new window.IntersectionObserver(handleObserver, {
-      rootMargin: '100px'
-    })
+    const handleObserver = (entries, observer) => {
+      const entryEl = entries[0]
+      if(entryEl.isIntersecting) {
+        setShow(true)
+        once && observer.disconnect()
+      } else {
+        if(!once) setShow(false)
+      }
+    }
 
-    observer.observe(refLazyEl.current)
+    const observer = new window.IntersectionObserver(handleObserver, {
+      rootMargin: distance
+    })
+    const elementToObserve = externalRef ? externalRef.current : refLazyEl.current
+
+    if(elementToObserve) {
+      observer.observe(elementToObserve)
+    }
     return () => observer.disconnect()
-  }, [])
+  }, [distance, externalRef, once])
 
 
   return {isShow: show, fromRef: refLazyEl}
