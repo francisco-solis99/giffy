@@ -1,11 +1,12 @@
 import { useRef } from 'react';
 import { useLocation } from 'wouter';
 import { useGifs } from '@hooks/useGifs';
-import { SearchIcon } from '@components/icons/Search';
 import { ListGifs } from '@components/ListGifs';
 import { LazyTrendingGifs } from '@components/LazyTrendingGifs';
+import SearchForm  from '@components/SearchForm'
 
 import './home.css'
+import { useCallback } from 'react';
 
 // const POPULAR_GIFS = ['Selena Gomez', 'Batman', 'Spiderman', 'Super Bowl']
 
@@ -14,31 +15,18 @@ export default function Home() {
   const [, setLocation] = useLocation()
   const { loading, gifs } = useGifs({search: searchRef.current.value})
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // use useCallback to avoid the change in the prop function for SearchForm component
+  const handleSubmit = useCallback(({keyword}) => {
     // Go to the search results page
-    setLocation(`/search/${searchRef.current.value}`)
-  }
+    setLocation(`/search/${keyword}`)
+  }, [setLocation])
 
-  // const handleChange = (e) => {
-  //   setSearch(e.target.value)
-  // }
+
 
   return (
     <div className='home__container'>
       {/* Searcher */}
-      <div className='searcher__wrapper'>
-        <form onSubmit={handleSubmit} className='searcher__form'>
-          <div className='searcher'>
-            <span>
-              <SearchIcon />
-            </span>
-            <input ref={searchRef} type="text"  required />
-            <button type='submit'>Search</button>
-          </div>
-        </form>
-      </div>
+      <SearchForm onSubmit={handleSubmit}/>
 
       {/* Gifs */}
       <main className='last-gifs'>
