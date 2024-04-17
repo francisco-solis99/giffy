@@ -14,7 +14,7 @@ export default function Search({ params }) {
   const { isShow } = useLazyScreen({
     externalRef: loading ? null : externalRef,
     once: false,
-    distance: '50px'
+    distance: '100px'
   })
 
   const handleClickNextGifs = useMemo(() => debounce(
