@@ -2,9 +2,8 @@ import { ListGifs } from '@components/ListGifs'
 import { useGifs } from '@hooks/useGifs';
 import { useLazyScreen } from '@hooks/useLazyScreen';
 import './search.css'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo} from 'react';
 import debounce from "just-debounce-it";
-import { useMemo } from 'react';
 
 export default function Search({ params }) {
   const { keyword } = params;
@@ -14,11 +13,11 @@ export default function Search({ params }) {
   const { isShow } = useLazyScreen({
     externalRef: loading ? null : externalRef,
     once: false,
-    distance: '100px'
+    distance: '10px'
   })
 
   const handleClickNextGifs = useMemo(() => debounce(
-    () => setPage(prevPage => prevPage + 1), 200
+    () => setPage(prevPage => prevPage + 1), 100
   ), [setPage])
 
   useEffect(() => {
