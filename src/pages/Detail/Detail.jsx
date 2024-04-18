@@ -1,18 +1,18 @@
 import Gif from "@components/Gif"
-// import { useGifContext } from "../../context/GifContext"
-import { useGifs } from "@hooks/useGifs"
+import { useSingleGif } from "@hooks/useSingleGif"
+import Spinner from '@components/Spin'
+import { Redirect } from "wouter"
 import '../Detail/detail.css'
 
 export default function Detail({ params }) {
-  const { gifs } = useGifs()
-
-  const gifSelected = gifs.find(singleGif => singleGif.id === params.id)
-
-  // TODO: A fallbaclk if the gif is not in the gifs list, calll the API service to get the single gif
+  const { gif, status } = useSingleGif({id: params.id})
+  console.log(status)
+  if(status === 'loading') return <Spinner/>
+  if(status === 'error') return <Redirect to="/404"/>
 
   return (
     <section className="detail-gif__wrapper">
-      <Gif {...gifSelected}/>
+      <Gif {...gif}/>
     </section>
   )
 }
