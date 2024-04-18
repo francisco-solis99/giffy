@@ -4,6 +4,7 @@ import { useLazyScreen } from '@hooks/useLazyScreen';
 import './search.css'
 import { useEffect, useRef, useMemo} from 'react';
 import debounce from "just-debounce-it";
+import { useSeo } from '../../hooks/useSeo';
 
 export default function Search({ params }) {
   const { keyword } = params;
@@ -15,6 +16,11 @@ export default function Search({ params }) {
     once: false,
     distance: '10px'
   })
+
+  const titleSearch = decodeURI(keyword)
+  const title = `Search for ${titleSearch}`
+  const metaDescription = `Search results for ${titleSearch}`
+  useSeo({title, description: metaDescription})
 
   const handleClickNextGifs = useMemo(() => debounce(
     () => setPage(prevPage => prevPage + 1), 100
@@ -28,7 +34,7 @@ export default function Search({ params }) {
   return (
     <>
       <main>
-        <h2 className='search__title'>{decodeURI(keyword)}</h2>
+        <h2 className='search__title'>{titleSearch}</h2>
         <section className='gifs__container'>
           <ListGifs gifs={gifs} loading={loading}/>
         </section>
