@@ -3,6 +3,7 @@ import { useSeo } from "@hooks/useSeo"
 import Gif from "@components/Gif"
 import Spinner from '@components/Spin'
 import { Redirect } from "wouter"
+
 import '../Detail/detail.css'
 
 export default function Detail({ params }) {
