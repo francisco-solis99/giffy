@@ -18,6 +18,7 @@
 
   & .searcher__form {
     display: flex;
+    flex-direction: column;
     width: 80%;
     max-width: 500px;
     margin: 0 auto;
@@ -28,6 +29,7 @@
 
   & .searcher {
     width: 100%;
+    margin-bottom: 1em;
     overflow: hidden;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -57,6 +59,17 @@
       background-color: var(--buttonColor);
       color: white;
       cursor: pointer;
+    }
+  }
+
+  & .searcher__rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & label {
+      font-size: 1rem;
+      margin-bottom: .25em;
     }
   }
 }
