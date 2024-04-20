@@ -1,20 +1,22 @@
-import { ListGifs } from '@components/ListGifs'
+import { useEffect, useRef, useMemo} from 'react';
 import { useGifs } from '@hooks/useGifs';
 import { useLazyScreen } from '@hooks/useLazyScreen';
-import './search.css'
-import { useEffect, useRef, useMemo} from 'react';
+import { useSeo } from '@hooks/useSeo';
+import { ListGifs } from '@components/ListGifs'
 import debounce from "just-debounce-it";
-import { useSeo } from '../../hooks/useSeo';
+import './search.css'
+import SearchForm  from '@components/SearchForm'
+
 
 export default function Search({ params }) {
-  const { keyword } = params;
-  const {gifs, loading, setPage} = useGifs({keyword})
+  const { keyword, rating } = params;
+  const {gifs, loading, setPage} = useGifs({keyword, rating})
   // use the lazy loading hook
   const externalRef = useRef()
   const { isShow } = useLazyScreen({
     externalRef: loading ? null : externalRef,
     once: false,
-    distance: '10px'
+    distance: '50px'
   })
 
   const titleSearch = decodeURI(keyword)
@@ -33,7 +35,10 @@ export default function Search({ params }) {
 
   return (
     <>
-      <main>
+      <section>
+        <SearchForm initialKeyword={titleSearch} initialRating={rating}/>
+      </section>
+      <main className='search__results-wrapper'>
         <h2 className='search__title'>{titleSearch}</h2>
         <section className='gifs__container'>
           <ListGifs gifs={gifs} loading={loading}/>
