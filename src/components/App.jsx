@@ -7,17 +7,6 @@ import '../App.css'
 
 import {Link, Route} from 'wouter'
 
-/*
-  TODO:
-  - Context ✅
-  - Search component
-  - Styles to the last search ✅
-  - Tendencies Component
-  - Alias
-  - Lazy loading tendencies
-  - Detail page styles
-*/
-
 function App(){
   return (
     <>
@@ -39,11 +28,15 @@ function App(){
 
         <Route
           component={Search}
-          path="/search/:keyword"/>
+          path="/search/:keyword/:rating?"/>
 
         <Route
           component={Detail}
           path="/gif/:id"/>
+
+        <Route
+          component={() => <h1>404 Error ⚠️</h1>}
+          path="/404"/>
       </GifProvider>
     </>
   )

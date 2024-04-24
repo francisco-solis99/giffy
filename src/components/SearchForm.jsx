@@ -1,25 +1,27 @@
-import React ,{ useState } from 'react'
+import React from 'react'
 import { useLocation } from 'wouter';
 import { SearchIcon } from '@components/icons/Search';
+import { useForm } from '../hooks/useForm';
 
 const RATINGS = ['g', 'pg', 'pg-13', 'r'];
 
 export function SearchForm({initialKeyword = '', initialRating = 'g'}) {
-  const [searchKeyword, setSearchKeyword] = useState(initialKeyword)
-  const [rating, setRating] = useState(initialRating)
+  // const [searchKeyword, setSearchKeyword] = useState(initialKeyword)
+  // const [rating, setRating] = useState(initialRating)
   const [, setLocation] = useLocation()
+  const { keyword, rating, updateKeyword, updateRating } = useForm({initialKeyword, initialRating})
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLocation(`/search/${searchKeyword}/${rating}`)
+    setLocation(`/search/${keyword}/${rating}`)
   }
 
   const handlerChangeRating = (e) => {
-    setRating(e.target.value)
+    updateRating(e.target.value)
   }
 
   const handleChangeKeyword = (e) => {
-    setSearchKeyword(e.target.value)
+    updateKeyword(e.target.value)
   }
 
   return (
@@ -29,7 +31,7 @@ export function SearchForm({initialKeyword = '', initialRating = 'g'}) {
             <span>
               <SearchIcon />
             </span>
-            <input type="text" value={searchKeyword} onChange={handleChangeKeyword} required />
+            <input type="text" value={keyword} onChange={handleChangeKeyword} required />
             <button type='submit'>Search</button>
           </div>
           <div className='searcher__rating'>
