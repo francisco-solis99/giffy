@@ -7,41 +7,42 @@ import Login from '@pages/Login/Login'
 import Header from '@components/Header'
 
 import { GifProvider } from '@context/GifContext'
+import { UserProvider }  from '@context/UserContext'
 
 import '../App.css'
 
 
 function App(){
 
-
-
   return (
     <>
-      {/* Header */}
-      <Header/>
+      <UserProvider>
+        {/* Header */}
+        <Header/>
 
-      {/* List of gifs */}
-      <GifProvider>
-        <Route
-          component={Home}
-          path="/"/>
+        {/* List of gifs */}
+        <GifProvider>
+          <Route
+            component={Home}
+            path="/"/>
 
-        <Route
-          component={Search}
-          path="/search/:keyword/:rating?"/>
+          <Route
+            component={Search}
+            path="/search/:keyword/:rating?"/>
 
-        <Route
-          component={Detail}
-          path="/gif/:id"/>
+          <Route
+            component={Detail}
+            path="/gif/:id"/>
 
-        <Route
-          component={Login}
-          path="/login"/>
+          <Route
+            component={Login}
+            path="/login"/>
 
-        <Route
-          component={() => <h1>404 Error ⚠️</h1>}
-          path="/404"/>
-      </GifProvider>
+          <Route
+            component={() => <h1>404 Error ⚠️</h1>}
+            path="/404"/>
+        </GifProvider>
+      </UserProvider>
     </>
   )
 }
@@ -52,11 +53,13 @@ export default App;
 TODOS:
 [✅] Add the header nav component
 [✅] Add login route
-[] Add login page
-[] create the user context
-[] create custom hook useUser
-[] use the useUser hook in Login page
-[] create the logout
+[✅] Add login page
+[✅] create the user context
+[✅] Wrapped the APP with UserContext provider
+[✅] create custom hook useUser
+[✅] use the useUser hook in Login page
+[✅] create the logout
+[] Add login page styles
 [] connect login to api
 [] Add loading and error state to login page
 [] Create the favorite actions component
