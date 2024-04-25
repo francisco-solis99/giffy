@@ -1,8 +1,13 @@
 import giffyLogo from '/logo.svg'
 import {Link} from 'wouter'
+import { useUserContext } from '@context/UserContext'
 
 export default function Header() {
-  const isLogged = false;
+  const { isLogged, logout } = useUserContext()
+
+  const handleClickLogOut = () => {
+    logout()
+  }
 
   return (
     <header className='header'>
@@ -12,7 +17,7 @@ export default function Header() {
             {
               isLogged
               ? (
-                <button>Logout</button>
+                <button onClick={handleClickLogOut}>Logout</button>
               )
               : (
                 <Link to='/login'>Login</Link>
