@@ -6,7 +6,7 @@ import { secretKey } from '../config.js';
 
 const router = Router();
 
-router.post('/login', (req, res) => {
+router.post('/api/login', (req, res) => {
   try {
     const {username: userName, password} = req.body;
     if(!userName || !password)  {
