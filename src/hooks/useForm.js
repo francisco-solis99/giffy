@@ -23,7 +23,7 @@ function reducer(state, action) {
 }
 
 
-export function useForm({initialKeyword, initialRating}) {
+export function useForm({initialKeyword = '', initialRating = 'g'} = {}) {
   const [state, dispatch] = useReducer(reducer, {
     keyword: initialKeyword,
     rating: initialRating
