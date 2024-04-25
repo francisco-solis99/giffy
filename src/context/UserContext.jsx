@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { createContext, useState, useContext } from 'react'
+import { loginService } from '../services/login';
 
 
 const UserContext = createContext();
@@ -8,8 +9,16 @@ const UserContext = createContext();
 function UserProvider({ children }) {
   const [jwt, setJwt] = useState(null)
 
-  const login = useCallback(() => {
-    setJwt('test')
+  const login = useCallback(({userName, password}) => {
+    loginService({username: userName, password})
+      .then(response => {
+        const { token } = response;
+        if(!token) return
+        setJwt(token);
+      })
+      .catch(err => {
+        console.err(err)
+      })
   }, [setJwt])
 
   const logout = useCallback(() => {
