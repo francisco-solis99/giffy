@@ -3,14 +3,14 @@ import { secretKey } from '../config.js';
 
 
 export function userMiddleware(req, res, next) {
-  const header = req.header("Authorization") || "";
-  const token = header.split(" ")[1];
-  if (!token) {
-    return res.status(401).json({ message: "Token not provied" });
+  const headerToken = req.header("Authorization") || "";
+  if (!headerToken) {
+    req.username= null;
+    return next()
   }
   try {
-    const payload = jwt.verify(token, secretKey);
-    req.username = payload.username;
+    const payload = jwt.verify(headerToken, secretKey);
+    req.username = payload.userNameToJwt;
     next();
   } catch (error) {
     return res.status(403).json({ message: "Token not valid" });
