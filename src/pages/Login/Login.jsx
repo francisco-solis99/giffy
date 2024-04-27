@@ -7,7 +7,7 @@ export default function Login() {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [, navigate] = useLocation()
-  const { login, isLogged} = useUserContext()
+  const { login, isLogged, hasLoading, hasError} = useUserContext()
 
   useEffect(() => {
     if(isLogged) navigate('/')
@@ -27,18 +27,25 @@ export default function Login() {
   }
 
   return (
-    <form className="login__form" onSubmit={handleSubmitLogin}>
-      <label htmlFor="username">
-        <span>Username</span>
-        <input type="text" name="username" value={userName} onChange={handleChangeUserName} required />
-      </label>
-      <label htmlFor="password">
-        <span>Password</span>
-        <input type="password" name="password" value={password} onChange={handleChangePassword} required />
-      </label>
-      <button type="submit">
-        Login
-      </button>
-    </form>
+    <>
+      <form className="login__form" onSubmit={handleSubmitLogin}>
+        <label htmlFor="username">
+          <span>Username</span>
+          <input type="text" name="username" value={userName} onChange={handleChangeUserName} required />
+        </label>
+        <label htmlFor="password">
+          <span>Password</span>
+          <input type="password" name="password" value={password} onChange={handleChangePassword} required />
+        </label>
+        <button type="submit" disabled={hasLoading}>
+          {hasLoading ? 'Loading' : 'Login'}
+        </button>
+      </form>
+      {
+        hasError && (
+          <span>Error verify crendentials</span>
+        )
+      }
+    </>
   )
 }
