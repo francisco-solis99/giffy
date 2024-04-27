@@ -59,11 +59,12 @@ TODOS:
 [✅] create custom hook useUser
 [✅] use the useUser hook in Login page
 [✅] create the logout
-[] Add login page styles
-[] connect login to api
-[] Add loading and error state to login page
+[✅] connect login to api
+[✅] Fix api
+[✅] Add loading and error state to login page
 [] Create the favorite actions component
-[] Save jwt ins sessionStorage
+[] Save jwt in sessionStorage
+[] Add login page styles
 [] Test favorite and unfavorite
 [] Add favorites section to home page
 
